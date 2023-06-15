@@ -58,7 +58,7 @@ if __name__ == "__main__":
     t = 0
     sim = []
     while t+240 <= dat.shape[0]:
-        p = gbm(dat[:t+240], "6m")
+        p = gbm(dat[:t+240], "6m", 60)
         print("t={}: p(s > s_t)={}" .format(t, p))
         sim.append(p)
         t += 1

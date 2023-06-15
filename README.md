@@ -19,7 +19,7 @@ http://www.columbia.edu/~ks20/FE-Notes/4700-07-Notes-GBM.pdf
 
 Using the simulation shown above, we can estimate the probability that the asset value would be greater than the current value during the N-day period following the current time.
 
-At every time ***t***, observe the asset value's historical data during the past 6-months (120 days). Through the GBM simulation, estimate the probability that the asset value would be greater than the current value during the 100-day period following ***t***. This probability is impacted by the short-term mean return and variation in return (or volatility and risk) according to the principles of GBM.
+At every time ***t***, observe the asset value's historical data during the past 6-months (120 days). Through the GBM simulation, estimate the probability that the asset value would be greater than the current value during the 3-month (60-days) period following ***t***. This probability is impacted by the short-term mean return and variation in return (or volatility and risk) according to the principles of GBM.
 
 Repeat the same procedure for every ***t*** and we get the following output.
 
