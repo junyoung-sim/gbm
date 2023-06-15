@@ -10,7 +10,7 @@ from download import download
 
 np.set_printoptions(suppress=True)
 
-def gbm(dat, look_back="full", N=100, epoch=1000):
+def gbm(dat, look_back="full", N=100, epoch=1000) -> int:
     look_back_options = {"full": 1,
                          "1yr": dat.shape[0] - 240,
                          "6m": dat.shape[0] - 120,
@@ -45,25 +45,25 @@ def gbm(dat, look_back="full", N=100, epoch=1000):
     prices = prices[prices != s0]
 
     up = sum([price > s0 for price in prices]) / prices.shape[0]
-    down = 1.00 - up
-
-    print("==================================================================================================")
-    print("look_back={}, N={}, epoch={}" .format(look_back, N, epoch))
-    print("s0={}, mu={}, sigma={}, drift={}" .format(s0, mu, sigma, drift))
-    print("P(s > s0) = {:.4f}" .format(up))
-    print("P(s < s0) = {:.4f}" .format(down))
-    print("==================================================================================================")
+    return up
 
 if __name__ == "__main__":
     ticker = sys.argv[1]
-    look_back = sys.argv[2]
-    N = int(sys.argv[3])
-
     apikey = open("apikey", "r").readline()
     download(ticker, apikey)
 
     dat = pd.read_csv("./data/{}.csv" .format(ticker))
     dat = dat.loc[::-1].reset_index().drop(columns=["index"])
 
-    gbm(dat, "full", 100)
-    gbm(dat, look_back, N)
+    sim = []
+    for t in range(dat.shape[0] - 240):
+        p = gbm(dat[:240+t], "6m")
+        print("t={}: p(s > s_t)={}" .format(t, p))
+        sim.append(p)
+    
+    plt.subplot(2, 1, 1)
+    plt.plot(sim)
+    plt.subplot(2, 1, 2)
+    plt.plot(dat["adjClose"][240:])
+
+    plt.savefig("gbm.png")
