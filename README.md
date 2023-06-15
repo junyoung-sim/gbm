@@ -23,6 +23,6 @@ At every time ***t***, observe the asset value's historical data during the past
 
 Repeat the same procedure for every ***t*** and we get the following output.
 
-![alt text](https://github.com/junyoung-sim/gbm/blob/main/res/gbm-short-term-valuation-cycle.png)
+![alt text](https://github.com/junyoung-sim/gbm/blob/main/res/spy.png)
 
 The graph on the top shows the probabilities estimated through the simulation each day for the S&P 500. Notice that those probabilities appear to be leading indicators; once the probabilities reach a significant value (below 0.30 and above 0.80), the stock index reverses direction!

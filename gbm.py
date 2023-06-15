@@ -71,4 +71,4 @@ if __name__ == "__main__":
     plt.subplot(2, 1, 2)
     plt.plot(dat)
 
-    plt.savefig("gbm.png")
+    plt.savefig("test.png")
